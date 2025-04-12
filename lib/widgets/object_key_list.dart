@@ -8,25 +8,17 @@ class ObjectKeyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('🎯 ObjectKey Example'),
-        Expanded(
-          child: ListView(
-            children: items
-                .map(
-                  (item) => Card(
-                    key: ObjectKey(item),
-                    child: ListTile(
-                      title: Text(item.name),
-                      subtitle: const Text('Using ObjectKey'),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
+    return SizedBox(
+      height: 200, // Set a fixed height
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        itemBuilder: (context, index) => ListTile(
+          key: ObjectKey(items[index]),
+          title: Text(items[index].name),
         ),
-      ],
+      ),
     );
   }
 }
